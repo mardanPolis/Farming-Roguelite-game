@@ -1,0 +1,7 @@
+build/
+mods/
+obj/
+bin/
+
+.cache
+.mgstats

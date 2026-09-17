@@ -1,0 +1,3 @@
+[submodule "Luminix"]
+	path = Luminix
+	url = https://github.com/mardanPolis/Luminix.git
