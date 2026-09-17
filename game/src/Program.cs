@@ -1,0 +1,2 @@
+﻿using Luminix;
+new Application();
