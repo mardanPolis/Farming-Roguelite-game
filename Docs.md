@@ -23,7 +23,7 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 | | |
 |---|---|
-| **Produkta nosaukums** | *Harvest & Survive* |
+| **Produkta nosaukums** | *-* |
 | **Produkta veids** | 2D Roguelite spēle ar lauksaimniecības un tower-defense mehānikām |
 | **Izstrādes mērķis** | Izveidot atkārtojamu, stratēģiski dziļu spēli, kurā lauksaimniecības dienas fāze un nakts wave aizsardzības fāze veido vienotu, savstarpēji atkarīgu gameplay cilpu |
 | **Pamata uzdevumi** | Implementēt procedurālu kartes paaudzi, lauksaimniecības mehāniku ar kultūru vairāk nekā 20 veidiem, wave-based ienaidnieku sistēmu, un Roguelite napildinājumu/zaudēšanas progresiju |
@@ -31,7 +31,7 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 ### Realizācijai nepieciešamie elementi
 
-- **Spēles dzinējs:** Godot 4.x vai Unity 2D
+- **Spēles dzinējs:** Luminix(Paša veidots)
 - **Grafikas apakšsistēma:** 2D pikseļu grafikas renderēšanas modulis
 - **Procedurālās paaudzes sistēma:** Kartes un ienaidnieku spawn ģenerēšana
 - **Saglabāšanas/ielādes apakšsistēma:** Roguelite run stāvokļa pārvaldība
@@ -39,18 +39,16 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 ### Vides prasības produkta darbības nodrošināšanai
 
-- **OS:** Windows 10/11, Linux (Ubuntu 20.04+), macOS 12+
+- **OS:** Windows 10/11, Linux (Ubuntu 20.04+)
 - **CPU:** Intel Core i3 / AMD Ryzen 3 vai jaunāks
 - **RAM:** min. 4 GB
-- **GPU:** DirectX 11 / OpenGL 3.3 saderīga videokarte
+- **GPU:** OpenGL 4.6 saderīga videokarte
 - **Diska vieta:** ~500 MB
 
 ### Pieejamības nodrošināšanas iespējas
 
-- Pilnībā pielāgojamas vadīklas (pele + tastatūra, gamepad)
+- Pilnībā pielāgojamas vadīklas (pele + tastatūra)
 - Regulējams teksta fonts un izmērs UI elementos
-- Krāsu akluma režīms (alternatīva krāsu palette)
-- Spēles ātruma regulācija dienas fāzē (pausēšana, lēnāks temps)
 
 ---
 
@@ -69,8 +67,6 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 **Rezultāts:** Atjaunots kartes vizuālais stāvoklis, resursu daudzuma izmaiņas, laika skaits (cik dienas līdz ražai)
 
-*2 punkti*
-
 ---
 
 #### Galvenā funkcionalitāte: Nakts fāze (Wave Combat)
@@ -83,8 +79,6 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 - Pārbauda win/lose kondīciju (bāze izdzīvoja / tika iznīcināta)
 
 **Rezultāts:** Wave rezultāts (izdzīvoja/zaudēja), iegūtie resursi, statistika (nodarītais kaitējums, izdzīvošanas laiks)
-
-*2 punkti*
 
 ---
 
@@ -99,8 +93,6 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 **Rezultāts:** Meta-progresijas atjaunošana, jaunās run sākuma opcijas, statistikas ekrāns
 
-*2 punkti*
-
 ---
 
 #### Papildfunkcionalitāte: Buff/Upgrade izvēle
@@ -110,8 +102,6 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 **Apstrāde:** Procedurāli atlasa 3 piedāvājumus no buff pool, ņemot vērā sinerģijas ar esošajiem buffiem
 
 **Rezultāts:** Vizuālais izvēles ekrāns ar 3 buff opcijām, izvēlētā buff efekts tiek piemērots
-
-*2 punkti*
 
 ---
 
@@ -123,15 +113,11 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 **Rezultāts:** Fāzes pāreja ar animāciju, ienaidnieku spawn aktivācija vai deaktivācija
 
-*2 punkti*
-
 ---
 
 #### Prasību kopums — galvenā funkcionalitāte
 
 Sistēmai jānodrošina pilnvērtīga lauksaimniecības mehānika (sēšana, laistīšana, ražas novākšana), wave-based cīņas sistēma ar vismaz 5 ienaidnieku tipiem pirmajā versijā, un Roguelite progresijas cilpa ar ne mazāk kā 30 dažādiem buff/upgrade efektiem. Visām trim sistēmām jādarbojas kohezīvi — resursi no dienas fāzes tieši ietekmē nakts fāzes iespējas.
-
-*2 punkti*
 
 ---
 
@@ -139,22 +125,17 @@ Sistēmai jānodrošina pilnvērtīga lauksaimniecības mehānika (sēšana, lai
 
 Spēlei jāietver procedurāla kartes ģenerēšana katrai jaunai run-ai, nodrošinot atšķirīgu lauksaimniecības laukumu izvietojumu, resursu pieejamību un ienaidnieku ieejas punktus. Vēl jāietver mini-boss encounters ik pēc 5 viļņiem un boss encounters katras run-as beigās.
 
-*2 punkti*
-
 ---
 
 ### 2.3.2. Sistēmas nefunkcionālās prasības
 
 #### Darbības vides prasības (programmatūra/aparatūra)
 
-- **Izstrāde:** Godot 4.x (GDScript/C#) vai Unity 2022 LTS (C#)
-- **Mērķplatformas:** Windows 10/11 (x64), Linux (x64), macOS 12+ (Apple Silicon + Intel)
+- **Izstrāde:** Luminix (C#)
+- **Mērķplatformas:** Windows 10/11 (x64), Linux (x64)
 - **Min. aparatūra:** Intel i3-8100 / Ryzen 3 2200G, 4 GB RAM, 512 MB VRAM, 500 MB HDD
 - **Rekomendētā:** Intel i5 / Ryzen 5, 8 GB RAM, 2 GB VRAM
-
-*1 punkts*
-
----
+- ---
 
 #### Drošība / datu aizsardzība / uzticamība
 
@@ -162,10 +143,7 @@ Spēlei jāietver procedurāla kartes ģenerēšana katrai jaunai run-ai, nodro�
 - Saglabāšanas faili tiek validēti ar checksum, lai novērstu korupciju
 - Avārijas gadījumā spēle auto-saglabā stāvokli ik pēc katras pabeigtas fāzes
 - Nekādi personīgie dati netiek vākti bez eksplicītas piekrišanas
-
-*1 punkts*
-
----
+- ---
 
 #### Saskarne / dizains
 
@@ -174,7 +152,6 @@ Spēlei jāietver procedurāla kartes ģenerēšana katrai jaunai run-ai, nodro�
 - **Dizaina stils:** Pikseļu grafika (16×16 vai 32×32 tile), silta dienas krāsu palette, tumša/auksta nakts palette
 - **UI:** Skaidrs HUD ar resursu skaitītājiem, laika joslu un minikarti
 
-*1 punkts*
 
 ---
 
@@ -185,7 +162,6 @@ Spēlei jāietver procedurāla kartes ģenerēšana katrai jaunai run-ai, nodro�
 - Nakts fāze ar līdz 200 vienlaicīgiem ienaidnieku objektiem bez FPS krituma zem 45
 - Atmiņas patēriņš: < 1 GB RAM spēles laikā
 
-*1 punkts*
 
 ---
 
@@ -193,7 +169,6 @@ Spēlei jāietver procedurāla kartes ģenerēšana katrai jaunai run-ai, nodro�
 
 Spēlei jānodrošina stabila un ātra darbība uz visām trim mērķplatformām (Windows, Linux, macOS) bez platformspecifiskām kļūdām. Saglabāšanas sistēmai jābūt uzticamai ar automātisku rezerves kopiju mehānismu. Spēlei jāatbalsta dažādas displeja konfigurācijas un jābūt pieejamā ar pielāgojamiem vadīklu iestatījumiem.
 
-*2 punkti*
 
 ---
 
@@ -201,9 +176,6 @@ Spēlei jānodrošina stabila un ātra darbība uz visām trim mērķplatformām
 
 Spēlei jābūt optimizētai ilgstošai spēlēšanas sesijai (2–4 stundas vienā run-ā) bez atmiņas noplūdēm. Audio sistēmai jānodrošina nemanāma pāreja starp dienas/nakts atmosfēras skaņu celiņiem. Roguelite saglabāšanas arhitektūrai jānodrošina, ka meta-progresija tiek saglabāta pat ja run sesija tiek pārtraukta negaidīti.
 
-*2 punkti*
-
----
 
 ## 2.4. Uzdevuma risināšanas līdzekļu apraksts un izvēles pamatojums
 
