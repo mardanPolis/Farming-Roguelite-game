@@ -1,5 +1,17 @@
 {
     "cSpell.words": [
         "Luminix"
-    ]
+    ],
+    "dotnet.preferCSharpExtension": true,
+    "dotnet.defaultSolution": "Farming-Roguelite-game.csproj",
+    "dotnet.excludeProjectReferences": true,
+    "files.exclude": {
+        "Luminix/MonoGame/Tests/**": true,
+        "Luminix/MonoGame/Tools/**": true,
+        "Luminix/MonoGame/external/**": true,
+        "Luminix/MonoGame/ThirdParty/**": true,
+        "Luminix/MonoGame/native/**": true,
+        "Luminix/MonoGame/build/**": true,
+        "Luminix/MonoGame/Templates/**": true
+    }
 }
