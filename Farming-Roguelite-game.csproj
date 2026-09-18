@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="Luminix\Luminix\Luminix.csproj" />
+    <ProjectReference Include="Luminix/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj">
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="Luminix/Luminix/Luminix.csproj" />
   </ItemGroup>
 </Project>
