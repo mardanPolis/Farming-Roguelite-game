@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/Game/bin/Release/net10.0/Farming-Roguelite-game",
+      "program": "${workspaceFolder}/Game/bin/Release/net10.0/Farming-Roguelite-game.dll",
       "cwd": "${workspaceFolder}/Game",
       "console": "integratedTerminal",
       "stopAtEntry": false

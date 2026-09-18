@@ -8,6 +8,8 @@
             "args": [
                 "build",
                 "${workspaceFolder}/Game/Farming-Roguelite-game.csproj",
+                "-c",
+                "Release",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
