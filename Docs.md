@@ -1,13 +1,13 @@
 # Produkta plānošanas dokumentācija
-# *Harvest & Survive* — Farming RogueLite spēle
+#  Farming RogueLite spēle
 
 ---
 
-## 2.1. Ievads
+## Ievads
 
 ### Situācija pirms produkta izveides
 
-Mūsdienu spēļu tirgū Roguelite žanrs ir kļuvis par vienu no populārākajiem indie spēļu virziem, pateicoties tā augstajai atkārtojamībai un procesuālajai paaudzes mehānikai. Paralēli tam lauksaimniecības simulatori (piemēram, *Stardew Valley*, *Sun Haven*) piesaista miljoniem spēlētāju ar savu nomierinošo, ritmisko gameplay. Tomēr šo divu žanru kombinācija — kur lauksaimniecības dienas ritms tieši ietekmē nakts cīņas spēju — tirgū pastāv tikai daļēji vai ar būtiskiem kompromisiem vienā no pusēm.
+Mūsdienu spēļu tirgū Roguelite žanrs ir kļuvis par vienu no populārākajiem indie spēļu virzieniem, pateicoties tā augstajai atkārtojamībai un procesuālajai paaudzes mehānikai. Paralēli tam lauksaimniecības simulatori (piemēram, *Stardew Valley*, *Sun Haven*) piesaista miljoniem spēlētāju ar savu nomierinošo, ritmisko gameplay. Tomēr šo divu žanru kombinācija — kur lauksaimniecības dienas ritms tieši ietekmē nakts cīņas spēju — tirgū pastāv tikai daļēji vai ar būtiskiem kompromisiem vienā no pusēm.
 
 ### Produkta nepieciešamība
 
@@ -25,15 +25,14 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 |---|---|
 | **Produkta nosaukums** | *-* |
 | **Produkta veids** | 2D Roguelite spēle ar lauksaimniecības un tower-defense mehānikām |
-| **Izstrādes mērķis** | Izveidot atkārtojamu, stratēģiski dziļu spēli, kurā lauksaimniecības dienas fāze un nakts wave aizsardzības fāze veido vienotu, savstarpēji atkarīgu gameplay cilpu |
-| **Pamata uzdevumi** | Implementēt procedurālu kartes paaudzi, lauksaimniecības mehāniku ar kultūru vairāk nekā 20 veidiem, wave-based ienaidnieku sistēmu, un Roguelite napildinājumu/zaudēšanas progresiju |
+| **Izstrādes mērķis** | Izveidot atkārtojamu, stratēģisku spēli, kurā lauksaimniecības dienas fāze un nakts wave aizsardzības fāze veido vienotu, savstarpēji atkarīgu gameplay cilpu |
+| **Pamata uzdevumi** | Implementēt procedurālu mantu un ienaidnieku parādīšanos ģenerēšanu, lauksaimniecības mehāniku ar augiem vairāk nekā 10 veidiem, un Roguelite zaudēšanas progresiju |
 | **Mērķauditorija** | PC spēlētāji vecumā 16–35 gadi, kuri bauda indie spēles, Roguelite žanru (*Hades*, *Dead Cells*) un/vai lauksaimniecības simulatorus (*Stardew Valley*) |
 
 ### Realizācijai nepieciešamie elementi
 
-- **Spēles dzinējs:** Luminix(Paša veidots)
-- **Grafikas apakšsistēma:** 2D pikseļu grafikas renderēšanas modulis
-- **Procedurālās paaudzes sistēma:** Kartes un ienaidnieku spawn ģenerēšana
+- **Spēles dzinējs:** Luminix (Paša veidots)
+- **Procedurālās paaudzes sistēma:*mantuuun n ienaidnieku spawn ģenerēšana
 - **Saglabāšanas/ielādes apakšsistēma:** Roguelite run stāvokļa pārvaldība
 - **Audio apakšsistēma:** Dienas/nakts atmosfēras skaņu un mūzikas atskaņošana
 
@@ -56,22 +55,22 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 ### 2.3.1. Sistēmas funkcionālās prasības
 
-#### Galvenā funkcionalitāte: Dienas fāze (Farming)
+#### Galvenā funkcionalitāte: Dienas fāze
 
-**Ievaddati:** Spēlētāja ievade (kursors, poga), resursu inventārs, kartes stāvoklis, Roguelite buff saraksts
+**Ievaddati:** Spēlētāja kontroļu ievade, kartes stāvoklis, resursu inventārs, buff saraksts
 
 **Apstrāde:**
 - Sistēma pārbauda atlasītā laukuma pieejamību
-- Aprēķina kultūras augšanas laiku pēc laika modifikatoru buffiem
+- Aprēķina augu augšanas laiku pēc laika modifikatoru buffiem
 - Atjauno resursu inventāru pēc katras darbības
 
 **Rezultāts:** Atjaunots kartes vizuālais stāvoklis, resursu daudzuma izmaiņas, laika skaits (cik dienas līdz ražai)
 
 ---
 
-#### Galvenā funkcionalitāte: Nakts fāze (Wave Combat)
+#### Galvenā funkcionalitāte: Nakts fāze
 
-**Ievaddati:** Spēlētāja novietoto aizstāvju konfigurācija, ienaidnieku viļņa parametri (skaits, tips, ātrums), spēlētāja statistika
+**Ievaddati:**  Spēlētāja kontroļu ievade, Spēlētāja novietoto aizstāvju konfigurācija, ienaidnieku viļņa parametri, spēlētāja statistika
 
 **Apstrāde:**
 - Procedurāli ģenerē ienaidnieku vilni pēc dienas numura un sarežģītības līknes
@@ -199,11 +198,11 @@ Spēlei jābūt optimizētai ilgstošai spēlēšanas sesijai (2–4 stundas vie
 
 ### 2.4.2. Izvēlēto risinājuma līdzekļu un valodu apraksts
 
-**Izvēlētā valoda: GDScript (primārā) + C# (veiktspējas kritiskajām daļām)**
+**Izvēlētā valoda: C# (veiktspējas kritiskajām daļām)**
 
 GDScript tiek izvēlēts kā primārā valoda, jo tā ir natīvi integrēta Godot dzinējā, nodrošina ātrāku izstrādi un ir optimizēta spēles loģikas rakstīšanai. Atšķirībā no vispārīgajām valodām, GDScript ir paredzēta tieši spēļu izstrādei — tai ir iebūvēti signālu/notikumu mehānismi, tween animācijas un scēnas sistēma.
 
-**Izvēlētā tehnoloģija: Godot 4.x**
+**Izvēlētā tehnoloģija: Luminix (Personīgais Game Engine)**
 
 Godot 4 tiek izvēlēts kā galvenais dzinējs, jo tas piedāvā pilnīgi bezmaksas licenci (MIT) bez royalty maksājumiem, iebūvētu 2D fiziku un renderēšanu, un aktīvu open-source kopienu. Atšķirībā no Unity, Godot neprasa abonēšanas maksu un neuzliek ierobežojumus pēc ieņēmumu sliekšņa — tas ir būtiski indie izstrādātājam.
 
@@ -216,213 +215,4 @@ Godot 4 tiek izvēlēts kā galvenais dzinējs, jo tas piedāvā pilnīgi bezmak
 
 ## 2.5. Sistēmas modelēšana un projektēšana
 
-### 2.5.1. Sistēmas struktūras modelis
-
-#### Produkta struktūra
-
-```
-Harvest & Survive
-├── Core Systems
-│   ├── GameManager (run stāvoklis, fāzu pārvaldība)
-│   ├── SaveSystem (saglabāšana/ielāde, meta-progresija)
-│   └── EventBus (notikumu sistēma starp komponentiem)
-├── Day Phase (Lauksaimniecība)
-│   ├── FarmGrid (laukumu karte, tile pārvaldība)
-│   ├── CropSystem (kultūru augšana, ražas novākšana)
-│   ├── ResourceManager (resursu inventārs)
-│   └── TimeManager (dienas laika skaitītājs)
-├── Night Phase (Wave Combat)
-│   ├── WaveManager (viļņu ģenerēšana, sarežģītība)
-│   ├── EnemySpawner (ienaidnieku spawn punkti)
-│   ├── DefenseSystem (aizstāvju izvietošana, torņi)
-│   └── CombatResolver (kaitējuma aprēķini)
-├── Roguelite Layer
-│   ├── BuffSystem (buff pool, sinerģijas)
-│   ├── MetaProgression (pastāvīgie atbloķējumi)
-│   └── RunGenerator (procedurāla karte, sākuma parametri)
-└── UI Layer
-    ├── HUD (resursi, laiks, vilnis)
-    ├── BuffSelectionScreen
-    └── MainMenu / RunSummary
-```
-
-#### ER diagramma (galvenās entītijas)
-
-```
-[Run] ──< [DayState] >── [CropInstance]
-  │                           │
-  │                      [CropType]
-  │
-  ├──< [NightState] >── [EnemyWave]
-  │                           │
-  │                      [EnemyType]
-  │
-  └──< [BuffCollection] >── [Buff]
-                                │
-                           [BuffCategory]
-
-[Player] ──< [MetaProgression] >── [UnlockRecord]
-```
-
-#### Datu vārdnīca
-
-| Entītija | Atribūts | Tips | Apraksts |
-|----------|---------|------|---------|
-| Run | run_id | UUID | Unikāls run identifikators |
-| Run | day_number | int | Pašreizējā diena (1–N) |
-| Run | is_active | bool | Vai run ir aktīva |
-| CropInstance | crop_type_id | FK | Kultūras tips |
-| CropInstance | growth_stage | int (0–4) | Augšanas stadija |
-| CropInstance | planted_day | int | Kad iestādīts |
-| CropInstance | tile_x, tile_y | int | Pozīcija kartē |
-| CropType | name | string | Kultūras nosaukums |
-| CropType | grow_time | int | Dienu skaits līdz ražai |
-| CropType | resource_yield | int | Ražas resursu daudzums |
-| EnemyWave | wave_number | int | Viļņa numurs |
-| EnemyWave | enemy_count | int | Ienaidnieku skaits |
-| EnemyWave | difficulty | float | Sarežģītības koeficients |
-| Buff | buff_id | UUID | Unikāls buff ID |
-| Buff | category | enum | FARMING / COMBAT / UTILITY |
-| Buff | effect_type | string | Efekta tips (speed, damage, yield…) |
-| Buff | magnitude | float | Efekta spēks |
-| MetaProgression | player_id | UUID | Spēlētāja ID |
-| MetaProgression | total_runs | int | Kopējais run skaits |
-| MetaProgression | unlocked_buffs | JSON | Atbloķēto buff ID saraksts |
-
-#### Diagrammu kopums — galvenās struktūras
-
-```
-┌─────────────────────────────────────────┐
-│              GAME SESSION               │
-│                                         │
-│  ┌──────────┐      ┌──────────────────┐ │
-│  │  Player  │─────▶│  MetaProgression │ │
-│  └──────────┘      └──────────────────┘ │
-│       │                                 │
-│       ▼                                 │
-│  ┌──────────┐                           │
-│  │   Run    │                           │
-│  └────┬─────┘                           │
-│       │                                 │
-│  ┌────▼──────┐    ┌───────────────┐     │
-│  │ DayPhase  │───▶│  NightPhase   │     │
-│  └────┬──────┘    └───────┬───────┘     │
-│       │                   │             │
-│  ┌────▼──────┐    ┌───────▼───────┐     │
-│  │ FarmGrid  │    │  WaveManager  │     │
-│  └───────────┘    └───────────────┘     │
-└─────────────────────────────────────────┘
-```
-
-#### Diagrammu kopums — papildu specifiskās struktūras
-
-```
-BUFF SYSTEM STRUKTŪRA:
-┌─────────────────────┐
-│     BuffPool        │
-│  (30+ buffs)        │
-└────────┬────────────┘
-         │ procedurāla atlase
-         ▼
-┌─────────────────────┐     ┌──────────────────┐
-│  BuffOffer (x3)     │────▶│  SynergyChecker  │
-└─────────────────────┘     └──────────────────┘
-         │ spēlētāja izvēle
-         ▼
-┌─────────────────────┐
-│   ActiveBuffList    │
-│   (uz spēlētāju)   │
-└─────────────────────┘
-         │ efektu piemērošana
-    ┌────┴────┐
-    ▼         ▼
-[FarmMods] [CombatMods]
-```
-
----
-
-### 2.5.2. Funkcionālais un dinamiskais sistēmas modelis
-
-#### Lietojuma gadījumu diagramma
-
-```
-                    ╔═══════════════════════════════════╗
-                    ║        Harvest & Survive          ║
-                    ║                                   ║
-  ┌──────────┐      ║  [Sākt jaunu run]                 ║
-  │          │──────╬─▶[Stādīt kultūras]                ║
-  │ Spēlētājs│      ║  [Laistīt kultūras]               ║
-  │          │──────╬─▶[Novākt ražu]                    ║
-  │          │      ║  [Izvietot aizstāvjus]            ║
-  │          │──────╬─▶[Izvēlēties buff]                ║
-  │          │      ║  [Skatīt statistiku]              ║
-  └──────────┘      ║  [Pielāgot iestatījumus]         ║
-                    ╚═══════════════════════════════════╝
-```
-
-#### Secību diagramma — Dienas/Nakts fāzes pāreja
-
-```
-Spēlētājs    TimeManager    GameManager    WaveManager    UI
-    │               │               │               │      │
-    │               │──timerTick()──▶               │      │
-    │               │               │               │      │
-    │               │◀──dayEnd()────│               │      │
-    │               │               │──prepareWave()▶      │
-    │               │               │               │      │
-    │               │               │◀──waveReady() │      │
-    │               │               │──────────────────────▶showNightUI()
-    │◀──────────────────────────────────────────────────────│
-    │──placeDefenders()─────────────────────────────────────▶
-    │               │               │               │      │
-    │──startWave()──────────────────▶               │      │
-    │               │               │──spawnWave()──▶      │
-```
-
-#### Stāvokļu diagramma — Run progresija
-
-```
-        ┌─────────────┐
-        │  MAIN MENU  │
-        └──────┬──────┘
-               │ startRun()
-               ▼
-        ┌─────────────┐
-   ┌───▶│  DAY PHASE  │◀──────────────┐
-   │    └──────┬──────┘               │
-   │           │ dayEnd()             │
-   │           ▼                      │
-   │    ┌─────────────┐               │
-   │    │ NIGHT PHASE │               │
-   │    └──────┬──────┘               │
-   │           │                      │
-   │    ┌──────┴──────┐               │
-   │    │             │               │
-   │    ▼             ▼               │
-   │ [WAVE WIN]   [WAVE LOSE]         │
-   │    │             │               │
-   │    ▼             ▼               │
-   │ [BUFF        [BASE               │
-   │  SELECT]     DESTROYED]          │
-   │    │             │               │
-   └────┘         ┌───┘               │
-                  │                   │
-                  ▼                   │
-           [RUN SUMMARY]              │
-                  │ restartRun()      │
-                  └───────────────────┘
-```
-
-#### Diagrammas atbilstība funkcionālajām prasībām
-
-Visas iepriekš definētās funkcionālās prasības ir atspoguļotas diagrammās:
-
-- **Dienas fāze (Farming)** → FarmGrid + CropSystem komponenti struktūras modelī, secību diagrammā redzama fāzes pāreja
-- **Nakts fāze (Wave Combat)** → WaveManager + EnemySpawner, stāvokļu diagrammā NIGHT PHASE stāvoklis
-- **Roguelite progresija** → MetaProgression entītija ER diagrammā, RUN SUMMARY + restartRun() stāvokļu diagrammā
-- **Buff sistēma** → BuffPool struktūras modelis ar SynergyChecker, BUFF SELECT stāvoklis
-
----
-
-*Dokuments sagatavots kā produkta plānošanas dokumentācija.*
-*Projekts: Harvest & Survive | Versija: 0.1 — Koncepcijas stadija*
+#### 
