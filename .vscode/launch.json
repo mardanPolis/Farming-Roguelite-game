@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C# Game",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Game/bin/Release/net10.0/Farming-Roguelite-game",
+      "cwd": "${workspaceFolder}/Game",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    },
+  ]
+}
