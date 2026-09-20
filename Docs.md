@@ -19,6 +19,7 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 ---
 
+
 ## 2.2. Uzdevuma formulējums
 
 | | |
@@ -26,15 +27,28 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 | **Produkta nosaukums** | *-* |
 | **Produkta veids** | 2D Roguelite spēle ar lauksaimniecības un tower-defense mehānikām |
 | **Izstrādes mērķis** | Izveidot atkārtojamu, stratēģisku spēli, kurā lauksaimniecības dienas fāze un nakts wave aizsardzības fāze veido vienotu, savstarpēji atkarīgu gameplay cilpu |
-| **Pamata uzdevumi** | Implementēt procedurālu mantu un ienaidnieku parādīšanos ģenerēšanu, lauksaimniecības mehāniku ar augiem vairāk nekā 10 veidiem, un Roguelite zaudēšanas progresiju |
-| **Mērķauditorija** | PC spēlētāji vecumā 16–35 gadi, kuri bauda indie spēles, Roguelite žanru (*Hades*, *Dead Cells*) un/vai lauksaimniecības simulatorus (*Stardew Valley*) |
+| **Pamata uzdevumi** | Implementēt procedurālu mantu un ienaidnieku viļņu ģenerēšanu, lauksaimniecības mehāniku ar augiem vairāk nekā 10 veidiem, un Roguelite zaudēšanas progresiju |
+| **Mērķauditorija** | Datoru spēlētāji vecumā 16–35 gadi, kuri bauda indie spēles, Roguelite žanru (*Hades*, *Dead Cells*) un/vai lauksaimniecības simulatorus (*Stardew Valley*) |
 
 ### Realizācijai nepieciešamie elementi
+#### Programmvienības
+- **Spēles dzinējs:** Luminix (paša veidots), kas nodrošina spēles galveno ciklu, renderēšanu, ievadi, ainu pārvaldību, resursu ielādi un fizikas/kolīziju apstrādi.
+- **Spēles loģikas modulis:** dienas/nakts fāžu maiņas kontrole, uzvaras un zaudēšanas nosacījumu pārbaude, spēles stāvokļu (izvēlne, dienas fāze, nakts fāze, run beigas) pārvaldība.
 
-- **Spēles dzinējs:** Luminix (Paša veidots)
-- **Procedurālās paaudzes sistēma:*mantuuun n ienaidnieku spawn ģenerēšana
-- **Saglabāšanas/ielādes apakšsistēma:** Roguelite run stāvokļa pārvaldība
-- **Audio apakšsistēma:** Dienas/nakts atmosfēras skaņu un mūzikas atskaņošana
+#### Sistēmas elementi
+- **Procedurālās ģenerēšanas:** mantu, veikalu un ienaidnieku viļņu ģenerēšana, ņemot vērā grūtības līmeni, run progresu un nejaušības sēklu (seed).
+- **Lauksaimniecības:** vairāk nekā 10 augu veidu apstrāde. Sēšana, augšana pa stadijām, laistīšana, ražas novākšana un ražas izmantošana resursu iegūšanai.
+- **Tower-defense:** aizsardzības struktūru izvietošana, mērķu izvēle, bojājumu aprēķins un viļņu norise.
+- **Progresijas:** Roguelite meta-progresija pēc zaudēšanas, pastāvīgo uzlabojumu saglabāšana starp run.
+- **Inventāra un resursu:** mantu, sēklu, ražas un resursu uzskaite un lietošana.
+- **Ienaidnieku mākslīgā intelekta:** ienaidnieku uzvedība, ienaidnieku ceļa meklēšana (pathfinding), uzbrukuma loģika un dažādu ienaidnieku tipu atšķirības.
+
+#### Apakšsistēmas
+- **Saglabāšanas/ielādes:** Roguelite run stāvokļa pārvaldība, kā arī pastāvīgās progresijas un iestatījumu saglabāšana.
+- **Audio:** dienas/nakts atmosfēras skaņu un mūzikas atskaņošana, skaņas efektu apstrāde, skaļuma regulēšana pa kanāliem (mūzika, efekti).
+- **Grafikas:** 2D sprite renderēšana, animācijas, apgaismojums/atmosfēras efekti dienas un nakts maiņai, izšķirtspējas un kadru ātruma iestatījumu piemērošana.
+- **Lietotāja saskarnes (UI):** izvēlnes, HUD, inventāra un iestatījumu saskarnes, teksta fonta un izmēra regulēšana.
+- **Ievades:** tastatūras un peles (iespējams, arī kontroliera) ievades apstrāde un vadības pārsaistīšana.
 
 ### Vides prasības produkta darbības nodrošināšanai
 
@@ -43,56 +57,97 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 - **RAM:** min. 4 GB
 - **GPU:** OpenGL 4.6 saderīga videokarte
 - **Diska vieta:** ~500 MB
+- **Papildues Programmatūra**: .NET 10 Desktop Runtime
 
 ### Pieejamības nodrošināšanas iespējas
 
-- Pilnībā pielāgojamas vadīklas (pele + tastatūra)
+- Grafiskie iestatijumi (Mainīt izšķirtspēja, vertikālā sinhronizācija, Kadri sekundē ierobežojums, tml. )
 - Regulējams teksta fonts un izmērs UI elementos
 
 ---
+
 
 ## 2.3. Prasību specifikācija
 
 ### 2.3.1. Sistēmas funkcionālās prasības
 
-#### Galvenā funkcionalitāte: Dienas fāze
-
-**Ievaddati:** Spēlētāja kontroļu ievade, kartes stāvoklis, resursu inventārs, buff saraksts
-
-**Apstrāde:**
-- Sistēma pārbauda atlasītā laukuma pieejamību
-- Aprēķina augu augšanas laiku pēc laika modifikatoru buffiem
-- Atjauno resursu inventāru pēc katras darbības
-
-**Rezultāts:** Atjaunots kartes vizuālais stāvoklis, resursu daudzuma izmaiņas, laika skaits (cik dienas līdz ražai)
-
----
-
-#### Galvenā funkcionalitāte: Nakts fāze
-
-**Ievaddati:**  Spēlētāja kontroļu ievade, Spēlētāja novietoto aizstāvju konfigurācija, ienaidnieku viļņa parametri, spēlētāja statistika
-
 **Apstrāde:**
 - Procedurāli ģenerē ienaidnieku vilni pēc dienas numura un sarežģītības līknes
 - Aprēķina kaitējumu, dziedināšanu un efektus reāllaikā
-- Pārbauda win/lose kondīciju (bāze izdzīvoja / tika iznīcināta)
 
-**Rezultāts:** Wave rezultāts (izdzīvoja/zaudēja), iegūtie resursi, statistika (nodarītais kaitējums, izdzīvošanas laiks)
+
+[comment]: <> (1)
+
+#### Galvenā funkcionalitāte: Dienas fāze
+
+**Ievaddati:** dienas numurs, kartes stāvoklis (visi stādījumi un to pašreizējā augšanas stadija), audzēto augu saraksts ar katra auga augšanas parametriem, iepriekšējā dienas pārdoto augu saraksts (veids un daudzums), augu pārdošanas cenas, spēlētāja nauda un resursu inventārs, aktīvo buff saraksts, veikala mantu kopa (pool), spēlētāja vadības ievade
+
+**Apstrāde:**
+
+- Dienas sākumā sistēma apstaigā katru iestādīto augu un atjaunina auga augšanas stadiju, ņemot vērā laistīšanu un augšanas modifikatoru buff efektus
+- Apstrādā iepriekšējā periodā pārdotos augus un pieskaita spēlētājam iegūto naudas summu
+- Procedurāli ģenerē veikala piedāvājumu, mantas, ko pārdod veikala īpašnieks, ņemot vērā dienas numuru un spēlētāja progresu
+- Pārbauda atlasītā laukuma pieejamību sēšanai, laistīšanai un ražas novākšanai
+- Atjauno resursu inventāru un kartes stāvokli pēc katras spēlētāja darbības
+- Kad spēlētājs ieiet savā mājiņā, dienas fāze beidzas
+
+**Rezultāts:** atjaunots kartes vizuālais stāvoklis, jaunās augu stadijas, atjaunota spēlētāja nauda, sagatavots veikala piedāvājums, resursu daudzuma izmaiņas, atlikušais laiks (dienu skaits līdz ražai), pāreja uz nakts fāzi
 
 ---
 
+[comment]: <> (2)
+
+
+#### Galvenā funkcionalitāte: Nakts fāze
+
+**Ievaddati:** dienas numurs, sarežģītības līkne, nejaušības sēkla (seed), kartes stāvoklis ar visiem augiem, augu īpašības (darbības ilgums un efekts), spēlētāja novietoto aizstāvju konfigurācija, spēlētāja statistika (t. sk. dzīvības) un aktīvo buff saraksts, ienaidnieku tipu saraksts un ienaidnieku ieejas punkti, spēlētāja vadības ievade
+
+**Apstrāde:**
+
+- Nakts sākumā sistēma apstaigā katru augu un nosaka tā darbības laiku naktī, t. i., cik ilgi tas augs ir aktīvs
+- Procedurāli ģenerē ienaidnieku vilni pēc dienas numura, sarežģītības līknes un nejaušības sēklas
+- Aprēķina kaitējumu, dziedināšanu un efektus reāllaikā
+- Pārbauda uzvaras/zaudējuma nosacījumu, t. i., vai spēlētājs izdzīvoja (spēlētāja dzīvības nav sasniegušas nulli)
+
+**Rezultāts:** viļņa rezultāts (izdzīvoja/zaudēja), iegūtie resursi, statistika (nodarītais kaitējums, izdzīvošanas laiks), atjaunots spēlētāja un augu stāvoklis
+
+---
+
+[comment]: <> (3)
+
+#### Papildfunkcionalitāte: Laika sistēma (Dienas/Nakts cikls)
+
+**Ievaddati:** pašreizējā fāze (diena/nakts), spēlētāja pozīcija un mijiedarbība ar mājiņu, ienaidnieku viļņa stāvoklis (dzīvo ienaidnieku skaits), spēlētāja dzīvības, notikumu trigeri
+
+**Apstrāde:**
+
+- Dienas fāzē sistēma seko spēlētāja mijiedarbībai ar mājiņu un, tiklīdz spēlētājs tajā ieiet, sāk pāreju uz nakts fāzi
+- Nakts fāzē sistēma seko dzīvo ienaidnieku skaitam un, tiklīdz visi ienaidnieki ir uzvarēti, sāk pāreju uz dienas fāzi
+- Ja spēlētājs nomirst pirms viļņa uzvarēšanas, sistēma pārtrauc fāžu ciklu un nodod vadību Roguelite progresijas sistēmai
+- Pārejas laikā aktivizē vai deaktivizē ienaidnieku parādīšanos (spawn) un palaiž dienas vai nakts sākuma apstrādi (augu stadiju atjaunināšana, viļņa ģenerēšana)
+
+**Rezultāts:** fāzes pāreja ar animāciju, ienaidnieku parādīšanās, pārslēgta spēles fāze
+
+---
+
+[comment]: <> (4)
+
+
 #### Galvenā funkcionalitāte: Roguelite progresija (Run sistēma)
 
-**Ievaddati:** Run stāvoklis, iegūtie punkti/resursi, izgāšanās vai uzvaras kondīcija
+**Ievaddati:** run stāvoklis, iegūtie punkti/resursi, spēlētāja nāve vai run pabeigšana.
 
 **Apstrāde:**
 - Saglabā meta-progresijas datus (pastāvīgie atbloķējumi)
-- Atiestata run-specifiskos datus (karte, inventārs, buff saraksts)
-- Atbloķē jaunus sākuma bonusus nākamajai run-ai
+- Atiestata run specifiskos datus (karte, inventārs, buff saraksts)
+- Atbloķē jaunus sākuma bonusus nākamajam run
 
 **Rezultāts:** Meta-progresijas atjaunošana, jaunās run sākuma opcijas, statistikas ekrāns
 
 ---
+
+[comment]: <> (5)
+
 
 #### Papildfunkcionalitāte: Buff/Upgrade izvēle
 
@@ -104,15 +159,7 @@ Roguelite spēļu tirgus 2024.–2026. gadā turpina augt, ar spēlēm kā *Hade
 
 ---
 
-#### Papildfunkcionalitāte: Dinamiskā laika sistēma (Dienas/Nakts cikls)
-
-**Ievaddati:** Spēlētāja darbības ātrums, spēles laiks, notikuma trigeri
-
-**Apstrāde:** Seko dienas laika skaitītājam, brīdina spēlētāju par tuvojošos nakti, automātiski pārslēdz fāzi
-
-**Rezultāts:** Fāzes pāreja ar animāciju, ienaidnieku spawn aktivācija vai deaktivācija
-
----
+[comment]: <> (6)
 
 #### Prasību kopums — galvenā funkcionalitāte
 
@@ -120,11 +167,16 @@ Sistēmai jānodrošina pilnvērtīga lauksaimniecības mehānika (sēšana, lai
 
 ---
 
+[comment]: <> (7)
+
 #### Prasību kopums — papildu funkcionalitāte
 
 Spēlei jāietver procedurāla kartes ģenerēšana katrai jaunai run-ai, nodrošinot atšķirīgu lauksaimniecības laukumu izvietojumu, resursu pieejamību un ienaidnieku ieejas punktus. Vēl jāietver mini-boss encounters ik pēc 5 viļņiem un boss encounters katras run-as beigās.
 
 ---
+
+
+
 
 ### 2.3.2. Sistēmas nefunkcionālās prasības
 
@@ -174,6 +226,9 @@ Spēlei jānodrošina stabila un ātra darbība uz visām trim mērķplatformām
 #### Papildu specifiskās nefunkcionālās prasības (kopums)
 
 Spēlei jābūt optimizētai ilgstošai spēlēšanas sesijai (2–4 stundas vienā run-ā) bez atmiņas noplūdēm. Audio sistēmai jānodrošina nemanāma pāreja starp dienas/nakts atmosfēras skaņu celiņiem. Roguelite saglabāšanas arhitektūrai jānodrošina, ka meta-progresija tiek saglabāta pat ja run sesija tiek pārtraukta negaidīti.
+
+
+
 
 
 ## 2.4. Uzdevuma risināšanas līdzekļu apraksts un izvēles pamatojums
