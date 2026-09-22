@@ -197,4 +197,17 @@ Nodrošina entītiju, komponenšu glabāšanu. Nodrošina grafisko resursu, ska�
 ### Spēles Loģika
 Nodrošina dienas un nakts fāžu ciklu, spēlētāja vadību un ienaidnieku uzvedību, kā arī pārvalda resursu ieguvi, inventāru, veikala sistēmu un spēles progresa saglabāšanu.
 
+## Datu Vārdnīca
 
+| Lauks |  Tips  | Apraksts |
+| :---- | :---- | :------- |
+| GameState | string | Sistēmas kopējais stāvoklis: vai spēle atrodas izvēlnē, aktīvā spēles sesijā, pauzē vai sesijas beigu ekrānā |
+| RunPhase  | string | Pašreizējā fāze aktīvas sesijas ietvaros: diena vai nakts |
+| RunSeed   | int    | Nejaušības sēkla, kas tiek izmantota kartes, veikala un ienaidnieku viļņu procedurālajai ģenerēšanai konkrētajā sesijā |
+| RunLevel  | int    | Cik tālu spēlētājs ticis pašreizējā sesijā; pieaug pēc katras veiksmīgi pārdzīvotas nakts |
+| RunDiff   | int    | Spēlētāja izvēlētā sākotnējā grūtības pakāpe pirms sesijas sākuma; ietekmē ienaidnieku skaitu, dzīvības un uzbrukuma spēku visas sesijas garumā. |
+| CurrDiff  | int    | Pašreizējā aprēķinātā grūtības pakāpe nakts fāzē; tiek aprēķināta no `RunDiff` un `RunLevel` un to izmanto ienaidnieku vilņa ģenerēšanai
+| TotalRuns | int    | Kopējais pabeigto spēles sesiju skaits kopš spēles pirmās palaišanas |
+| TopLevel  | int    | Labākais jebkad sasniegtais RunLevel starp visām spēles sesijām; izmanto statistikas rādīšanai un progresa izsekošanai |
+| PlayerID  | EntityID | Atsauce uz spēlētāja entītiju dzinēja entītiju-komponenšu sistēmā |
+| Settings  | struct | Saglabātie spēlētāja iestatījumi (izšķirtspēja, skaļums u.c.) |
